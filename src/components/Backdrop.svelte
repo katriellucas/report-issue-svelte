@@ -1,15 +1,16 @@
 <script lang="ts">
-	import { closeBackdrop } from '$lib/actions/closeBackdrop';
 	import { fade } from 'svelte/transition';
 
-	let { key } = $props<Backdrop>();
+	let { show } = $props<Backdrop>();
 </script>
 
-<div
-	class="backdrop"
-	use:closeBackdrop={key}
-	transition:fade|global={{ delay: 100, duration: 100 }}
-/>
+{#if show}
+	<div
+		class="backdrop"
+		onclick={()=> show = false}
+		transition:fade|global={{ delay: 100, duration: 100 }}
+	/>
+{/if}
 
 <style>
 	.backdrop {
